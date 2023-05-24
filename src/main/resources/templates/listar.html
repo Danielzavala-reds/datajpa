@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
+      crossorigin="anonymous"
+    />
+    <title th:text="${title}"></title>
+  </head>
+  <body>
+
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">SpringBoot</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/lista}">Clientes</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+
+        <h1 class="text-primary text-center border border-success border-top-0 border-end-0 border-start-0 mb-3">Lista de clientes</h1>
+
+      <a class="btn btn-debug btn-xs" th:href="@{/formulario}"> Crear cliente </a>
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Nombre</th>
+              <th>Apellido</th>
+              <th>Email</th>
+              <th>Fecha</th>
+              <th>Editar</th>
+              <th>Eliminar</th>
+            </tr>
+          </thead>
+    
+          <tbody>
+            <tr th:each="client: ${clients}">
+              <td th:text="${client.id}"></td>
+              <td th:text="${client.name}"></td>
+              <td th:text="${client.lastName}"></td>
+              <td th:text="${client.email}"></td>
+              <td th:text="${client.createAt}"></td>
+              <td><a class="btn btn-primary btn-xs" th:href="@{/editar-cliente/} + ${client.id}" th:text="${'Editar'}"></a></td>
+              <td><a class="btn btn-danger btn-xs" th:href="@{/eliminar/} + ${client.id}" th:text="${'Eliminar'}" onclick="return confirm ('Estás seguro de eliminar este registro?')"></a></td>
+            </tr>
+          </tbody>
+        </table>
+
+    </div>
+
+   
+  </body>
+</html>
