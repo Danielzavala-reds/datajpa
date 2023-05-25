@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
-import com.reds.sprinboot.datajpa.app.models.dao.IClientDao;
 import com.reds.sprinboot.datajpa.app.models.entity.Client;
+import com.reds.sprinboot.datajpa.app.services.IClientService;
 
 import jakarta.validation.Valid;
 
@@ -23,13 +23,13 @@ import jakarta.validation.Valid;
 public class ClientController {
     
     @Autowired
-    private IClientDao iClientDao;
+    private IClientService iClientService;
 
     @GetMapping("/lista")
     public String toList(Model model){
 
       model.addAttribute("title", "Lista de clientes");
-      model.addAttribute("clients", iClientDao.findAll());
+      model.addAttribute("clients", iClientService.findAll());
 
       
       return "listar";
@@ -50,7 +50,7 @@ public class ClientController {
       Client client = null;
 
       if(id > 0){
-        client = iClientDao.findOne(id);
+        client = iClientService.findOne(id);
       } else{
         return "redirect:/lista";
       }
@@ -70,7 +70,7 @@ public class ClientController {
         return "formulario";
       }
 
-      iClientDao.save(client);
+      iClientService.save(client);
       sessionStatus.setComplete();
       return "redirect:/lista";
     }
@@ -78,7 +78,7 @@ public class ClientController {
     @GetMapping("/eliminar/{id}")
     public String delete(@PathVariable (value = "id") Long id){
       if(id > 0){
-        iClientDao.delete(id);
+        iClientService.delete(id);
       }
       return "redirect:/lista";
     }
