@@ -3,12 +3,16 @@ package com.reds.sprinboot.datajpa.app.controllers;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
@@ -26,10 +30,18 @@ public class ClientController {
     private IClientService iClientService;
 
     @GetMapping("/lista")
-    public String toList(Model model){
+    public String toList(@RequestParam(name = "page", defaultValue = "0") int page, Model model){
+      
+      /* Implementacion de paginaciòn que es un Pageable, indicamos tipo de dato int page como parametro
+       * posteriormente indicamos el size, los registros que se mostraran en la vista
+       */
+      Pageable pageRequest = PageRequest.of(page, 5);
+
+      /* Retorna un Page de tipo cliente, lo asignamos al mètodo findAll paginable que se definio en la interface del servicio */
+      Page<Client> clients = iClientService.findAll(pageRequest);
 
       model.addAttribute("title", "Lista de clientes");
-      model.addAttribute("clients", iClientService.findAll());
+      model.addAttribute("clients", clients);
 
       
       return "listar";
