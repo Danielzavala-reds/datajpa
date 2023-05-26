@@ -1,2 +1,30 @@
-
--- INSERT INTO clients (id, name, last_name, email, create_at) VALUES ('Daniel', 'Zavala', 'daniel@correo.com', '2023-05-20');
+-- /* Populate tables */
+-- INSERT INTO clients (id, name, last_name, email, create_at, photo) VALUES ('Daniel', 'Zavala', 'daniel@correo.com', '26-05-2023', '');
+-- INSERT INTO clients (id, name, last_name, email, create_at, photo) VALUES ('Daniel', 'Zavala', 'daniel@correo.com', '26-05-2023', '');
+-- INSERT INTO clients (id, name, last_name, email, create_at, photo) VALUES ('Daniel', 'Zavala', 'daniel@correo.com', '26-05-2023', '');
+-- INSERT INTO clients (id, name, last_name, email, create_at, photo) VALUES ('Daniel', 'Zavala', 'daniel@correo.com', '26-05-2023', '');
+-- INSERT INTO clients (id, name, last_name, email, create_at, photo) VALUES ('Daniel', 'Zavala', 'daniel@correo.com', '26-05-2023', '');
+-- INSERT INTO clients (id, name, last_name, email, create_at, photo) VALUES ('Daniel', 'Zavala', 'daniel@correo.com', '26-05-2023', '');
+-- INSERT INTO clients (id, name, last_name, email, create_at, photo) VALUES ('Daniel', 'Zavala', 'daniel@correo.com', '26-05-2023', '');
+-- INSERT INTO clients (id, name, last_name, email, create_at, photo) VALUES ('Daniel', 'Zavala', 'daniel@correo.com', '26-05-2023', '');
+-- INSERT INTO clients (id, name, last_name, email, create_at, photo) VALUES ('Daniel', 'Zavala', 'daniel@correo.com', '26-05-2023', '');
+-- INSERT INTO clients (id, name, last_name, email, create_at, photo) VALUES ('Daniel', 'Zavala', 'daniel@correo.com', '26-05-2023', '');
+-- INSERT INTO clients (id, name, last_name, email, create_at, photo) VALUES ('Daniel', 'Zavala', 'daniel@correo.com', '26-05-2023', '');
+-- INSERT INTO clients (id, name, last_name, email, create_at, photo) VALUES ('Daniel', 'Zavala', 'daniel@correo.com', '26-05-2023', '');
+-- INSERT INTO clients (id, name, last_name, email, create_at, photo) VALUES ('Daniel', 'Zavala', 'daniel@correo.com', '26-05-2023', '');
+-- INSERT INTO clients (id, name, last_name, email, create_at, photo) VALUES ('Daniel', 'Zavala', 'daniel@correo.com', '26-05-2023', '');
+-- INSERT INTO clients (id, name, last_name, email, create_at, photo) VALUES ('Daniel', 'Zavala', 'daniel@correo.com', '26-05-2023', '');
+-- INSERT INTO clients (id, name, last_name, email, create_at, photo) VALUES ('Daniel', 'Zavala', 'daniel@correo.com', '26-05-2023', '');
+-- INSERT INTO clients (id, name, last_name, email, create_at, photo) VALUES ('Daniel', 'Zavala', 'daniel@correo.com', '26-05-2023', '');
+-- INSERT INTO clients (id, name, last_name, email, create_at, photo) VALUES ('Daniel', 'Zavala', 'daniel@correo.com', '26-05-2023', '');
+-- INSERT INTO clients (id, name, last_name, email, create_at, photo) VALUES ('Daniel', 'Zavala', 'daniel@correo.com', '26-05-2023', '');
+-- INSERT INTO clients (id, name, last_name, email, create_at, photo) VALUES ('Daniel', 'Zavala', 'daniel@correo.com', '26-05-2023', '');
+-- INSERT INTO clients (id, name, last_name, email, create_at, photo) VALUES ('Daniel', 'Zavala', 'daniel@correo.com', '26-05-2023', '');
+-- INSERT INTO clients (id, name, last_name, email, create_at, photo) VALUES ('Daniel', 'Zavala', 'daniel@correo.com', '26-05-2023', '');
+-- INSERT INTO clients (id, name, last_name, email, create_at, photo) VALUES ('Daniel', 'Zavala', 'daniel@correo.com', '26-05-2023', '');
+-- INSERT INTO clients (id, name, last_name, email, create_at, photo) VALUES ('Daniel', 'Zavala', 'daniel@correo.com', '26-05-2023', '');
+-- INSERT INTO clients (id, name, last_name, email, create_at, photo) VALUES ('Daniel', 'Zavala', 'daniel@correo.com', '26-05-2023', '');
+-- INSERT INTO clients (id, name, last_name, email, create_at, photo) VALUES ('Daniel', 'Zavala', 'daniel@correo.com', '26-05-2023', '');
+-- INSERT INTO clients (id, name, last_name, email, create_at, photo) VALUES ('Daniel', 'Zavala', 'daniel@correo.com', '26-05-2023', '');
+-- INSERT INTO clients (id, name, last_name, email, create_at, photo) VALUES ('Daniel', 'Zavala', 'daniel@correo.com', '26-05-2023', '');
+-- INSERT INTO clients (id, name, last_name, email, create_at, photo) VALUES ('Daniel', 'Zavala', 'daniel@correo.com', '26-05-2023', '');

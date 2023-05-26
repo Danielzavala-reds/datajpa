@@ -1,5 +1,8 @@
 package com.reds.sprinboot.datajpa.app.controllers;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.reds.sprinboot.datajpa.app.models.entity.Client;
 import com.reds.sprinboot.datajpa.app.services.IClientService;
@@ -77,11 +81,28 @@ public class ClientController {
     }
 
     @PostMapping("/formulario")  /* @Valid (en este caso la clase a validar que es Client) y BindingResult siempre van juntos para ejecutar la validadion */
-    public String save(@Valid Client client, BindingResult res, Model model, SessionStatus sessionStatus){
+    public String save(@Valid Client client, BindingResult res, Model model, @RequestParam("file") MultipartFile photo ,SessionStatus sessionStatus){
 
       if(res.hasErrors()){
         model.addAttribute("title", "Formulario de Cliente");
         return "formulario";
+      }
+
+      // Subida de archivos con Path
+      if(!photo.isEmpty()){
+        Path directoryResources = Paths.get("src//main//resources//static/uploads");
+        String rootPath = directoryResources.toFile().getAbsolutePath();
+
+        try {
+          byte[] bytes = photo.getBytes();
+          Path pathComplete = Paths.get(rootPath + "//" + photo.getOriginalFilename());
+          Files.write(pathComplete, bytes);
+
+          client.setImage(photo.getOriginalFilename());
+        } catch (Exception e) {
+          e.fillInStackTrace(); 
+
+        }
       }
 
       iClientService.save(client);
