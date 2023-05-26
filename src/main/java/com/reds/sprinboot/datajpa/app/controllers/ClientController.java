@@ -18,6 +18,7 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import com.reds.sprinboot.datajpa.app.models.entity.Client;
 import com.reds.sprinboot.datajpa.app.services.IClientService;
+import com.reds.sprinboot.datajpa.app.utils.PageRender;
 
 import jakarta.validation.Valid;
 
@@ -35,14 +36,15 @@ public class ClientController {
       /* Implementacion de paginaciòn que es un Pageable, indicamos tipo de dato int page como parametro
        * posteriormente indicamos el size, los registros que se mostraran en la vista
        */
-      Pageable pageRequest = PageRequest.of(page, 5);
+      Pageable pageRequest = PageRequest.of(page, 4);
 
       /* Retorna un Page de tipo cliente, lo asignamos al mètodo findAll paginable que se definio en la interface del servicio */
       Page<Client> clients = iClientService.findAll(pageRequest);
-
+      PageRender<Client> pageRender = new PageRender<>("/lista", clients);
+      
       model.addAttribute("title", "Lista de clientes");
       model.addAttribute("clients", clients);
-
+      model.addAttribute("page", pageRender);
       
       return "listar";
     }
