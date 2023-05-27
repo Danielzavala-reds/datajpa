@@ -34,6 +34,19 @@ public class ClientController {
     @Autowired
     private IClientService iClientService;
 
+    @GetMapping("/ver/{id}")
+    public String ver(@PathVariable(value = "id") Long id, Map<String, Object> model){
+
+      Client client = iClientService.findOne(id);
+      if(client == null){
+        return "redirect:/lista";
+      }
+
+      model.put("client", client);
+      model.put("title", "Detalle cliente" + client.getName());
+      return "ver";
+    }
+
     @GetMapping("/lista")
     public String toList(@RequestParam(name = "page", defaultValue = "0") int page, Model model){
       
