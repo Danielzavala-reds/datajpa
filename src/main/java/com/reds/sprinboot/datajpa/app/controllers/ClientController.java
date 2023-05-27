@@ -1,6 +1,8 @@
 package com.reds.sprinboot.datajpa.app.controllers;
 
 import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -30,6 +32,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.reds.sprinboot.datajpa.app.models.entity.Client;
 import com.reds.sprinboot.datajpa.app.services.IClientService;
+import com.reds.sprinboot.datajpa.app.services.IUploadFileService;
 import com.reds.sprinboot.datajpa.app.utils.PageRender;
 
 import jakarta.validation.Valid;
@@ -42,26 +45,21 @@ public class ClientController {
   @Autowired
   private IClientService iClientService;
 
-  private final static Logger log = LoggerFactory.getLogger(ClientController.class);
+  @Autowired
+  private IUploadFileService iUploadFileService;
 
-  private final static String UPLOADS_FOLDER = "uploads";
+  private final static Logger log = LoggerFactory.getLogger(ClientController.class);
 
   @GetMapping("/uploads/{filename:.+}") /*
                                          * El parametro es el nombre del archivo con extensiòn ":.+" esta expresiòn
                                          * regular permite que Spring no borre la extension del archivo
                                          */
   public ResponseEntity<Resource> watchPhoto(@PathVariable String filename) {
-    Path pathPhoto = Paths.get(UPLOADS_FOLDER).resolve(filename).toAbsolutePath();
-    log.info("pathPhoto: " + pathPhoto);
 
     Resource resource = null;
     try {
-      resource = new UrlResource(pathPhoto.toUri());
-      if (!resource.exists() && !resource.isReadable()) {
-        throw new RuntimeException("Error: no se puede cargar la imagen" + pathPhoto.toString());
-      }
-    } catch (Exception e) {
-      // TODO: handle exception
+      resource = iUploadFileService.load(filename);
+    } catch (MalformedURLException e) {
       e.printStackTrace();
     }
 
@@ -152,13 +150,18 @@ public class ClientController {
       /* Editar usuario, donde se elimina la antigua y se guarda la nueva */
       if (client.getId() != null && client.getId() > 0 && client.getImage() != null && client.getImage().length() > 0) {
 
-        Path rooPath = Paths.get(UPLOADS_FOLDER).resolve(client.getImage()).toAbsolutePath();
-        File file = rooPath.toFile();
+        iUploadFileService.delete(client.getImage());
 
-        if (file.exists() && file.canRead()) {
-          file.delete();
-        }
       }
+
+      String uniqueFileName = null;
+      try {
+        uniqueFileName = iUploadFileService.copy(photo);
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
+
+      client.setImage(uniqueFileName);
 
       /*
        * Manera de guardar los uploads de forma local en el mismo empaquetado jar, lo
@@ -177,29 +180,7 @@ public class ClientController {
 
       /* Directorio uploads externo al proyecto */
       /* Damos nombres unicos con esta libreria UUID */
-      String uniqueFileName = UUID.randomUUID().toString() + "_" + photo.getOriginalFilename();
-      Path rootPath = Paths.get(UPLOADS_FOLDER).resolve(uniqueFileName); /*
-                                                                          * .resolve se encarga de concatenar al path
-                                                                          * "uploads/nombreArchivo.jpg"
-                                                                          */
 
-      Path absolutePath = rootPath.toAbsolutePath();
-      log.info("rootPath: " + rootPath); /* Path relativo al proyecto */
-      log.info("AbsolutePath: " + absolutePath); /* Path absoluta - desde la raiz */
-
-      try {
-        // byte[] bytes = photo.getBytes();
-        // Path pathComplete = Paths.get(rootPath + "/" + photo.getOriginalFilename());
-        // Files.write(pathComplete, bytes);
-
-        /* Alternativa a files.write que simplifica codigo */
-        Files.copy(photo.getInputStream(), absolutePath);
-
-        client.setImage(uniqueFileName);
-      } catch (Exception e) {
-        e.fillInStackTrace();
-
-      }
     }
 
     iClientService.save(client);
@@ -218,14 +199,11 @@ public class ClientController {
       iClientService.delete(id);
 
       /* Obtener ruta absoluta de la imagen */
-      Path rooPath = Paths.get(UPLOADS_FOLDER).resolve(client.getImage()).toAbsolutePath();
-      File file = rooPath.toFile();
 
-      if (file.exists() && file.canRead()) {
-        if (file.delete()) {
-          log.info("Archivo eliminado: " + client.getImage());
-        }
+      if (iUploadFileService.delete(client.getImage())) {
+        log.info("Archivo eliminado: " + client.getImage());
       }
+
     }
     return "redirect:/lista";
   }
