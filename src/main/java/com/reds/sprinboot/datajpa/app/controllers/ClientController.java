@@ -103,12 +103,12 @@ public class ClientController {
 
       // Subida de archivos con Path
       if(!photo.isEmpty()){
-        Path directoryResources = Paths.get("src//main//resources//static/uploads");
+        Path directoryResources = Paths.get("datajpa/src/main/resources/static/uploads"); 
         String rootPath = directoryResources.toFile().getAbsolutePath();
 
         try {
           byte[] bytes = photo.getBytes();
-          Path pathComplete = Paths.get(rootPath + "//" + photo.getOriginalFilename());
+          Path pathComplete = Paths.get(rootPath + "/" + photo.getOriginalFilename());
           Files.write(pathComplete, bytes);
 
           client.setImage(photo.getOriginalFilename());
