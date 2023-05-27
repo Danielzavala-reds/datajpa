@@ -13,6 +13,9 @@ public class MvcConfig implements WebMvcConfigurer {
 
     private final static Logger log = LoggerFactory.getLogger(MvcConfig.class);
 
+    /* Una forma de guardar los uploads desde el pathabsolute es generando esta clase de configuraciòn */
+
+    /* 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         // TODO Auto-generated method stub
@@ -23,5 +26,7 @@ public class MvcConfig implements WebMvcConfigurer {
         registry.addResourceHandler("/uploads/**")
         .addResourceLocations(resourcePath);
     }
+
+    */
     
 }
