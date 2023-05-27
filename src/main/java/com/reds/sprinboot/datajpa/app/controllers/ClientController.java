@@ -4,7 +4,10 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Map;
+import java.util.UUID;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -33,6 +36,8 @@ public class ClientController {
     
     @Autowired
     private IClientService iClientService;
+
+    private final static Logger log = LoggerFactory.getLogger(ClientController.class);
 
     @GetMapping("/ver/{id}")
     public String ver(@PathVariable(value = "id") Long id, Map<String, Object> model){
@@ -103,15 +108,33 @@ public class ClientController {
 
       // Subida de archivos con Path
       if(!photo.isEmpty()){
-        Path directoryResources = Paths.get("datajpa/src/main/resources/static/uploads"); 
-        String rootPath = directoryResources.toFile().getAbsolutePath();
+
+        /* Manera de guardar los uploads de forma local en el mismo empaquetado jar, lo que no es buena practica */
+        // Path directoryResources = Paths.get("datajpa/src/main/resources/static/uploads"); 
+        // String rootPath = directoryResources.toFile().getAbsolutePath();
+
+        /* Manera de desacoplar los uploads, haciendo una ruta totalmente separada del jar */
+
+        // String rootPath = "opt/uploads";
+
+        /* Directorio uploads externo al proyecto */
+            /* Damos nombres unicos con esta libreria UUID */
+        String uniqueFileName = UUID.randomUUID().toString() + "_" + photo.getOriginalFilename();
+        Path rootPath = Paths.get("uploads").resolve(uniqueFileName); /* .resolve se encarga de concatenar al path "uploads/nombreArchivo.jpg" */
+
+        Path absolutePath = rootPath.toAbsolutePath();
+        log.info("rootPath: " + rootPath); /* Path relativo al proyecto */
+        log.info("AbsolutePath: " + absolutePath); /* Path absoluta - desde la raiz  */
 
         try {
-          byte[] bytes = photo.getBytes();
-          Path pathComplete = Paths.get(rootPath + "/" + photo.getOriginalFilename());
-          Files.write(pathComplete, bytes);
+          // byte[] bytes = photo.getBytes();
+          // Path pathComplete = Paths.get(rootPath + "/" + photo.getOriginalFilename());
+          // Files.write(pathComplete, bytes);
 
-          client.setImage(photo.getOriginalFilename());
+          /* Alternativa a files.write que simplifica codigo */
+          Files.copy(photo.getInputStream(), absolutePath);
+
+          client.setImage(uniqueFileName);
         } catch (Exception e) {
           e.fillInStackTrace(); 
 
