@@ -41,7 +41,7 @@ public class Bill implements Serializable {
     private Client client;
 
     /* Establecemos relación con los itemFactura que son hijos de factura */
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL) /*
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true) /*
                                                                    * Aqui se utilizó JoinColumn
                                                                    * para indicar la relación ya que esta no es una
                                                                    * relación bidireccional es unidireccional
