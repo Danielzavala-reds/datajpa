@@ -46,10 +46,14 @@ public class Client implements Serializable {
 
     /* Atributo con el que se harà relacion con facturas */
     /* mappedBy, se harà cargo de crear la foreignkey en la tabla bill */
-    @OneToMany(mappedBy = "client", fetch = FetchType.LAZY, cascade = CascadeType.ALL) /*
+    @OneToMany(mappedBy = "client", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true) /*
                                                                                         * One hace referencia a esta
                                                                                         * clase (Client), un cliente
-                                                                                        * puede tener muchas facturas
+                                                                                        * puede tener muchas facturas,
+                                                                                        * Ademas aquí no se utilizo
+                                                                                        * JoinColumn
+                                                                                        * ya que la relación es en ambos
+                                                                                        * sentidos
                                                                                         */
     private List<Bill> bills;
 
