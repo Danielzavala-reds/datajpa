@@ -1,14 +1,14 @@
 /* Populate tables */
- INSERT INTO `db_datajpa`.`clients` (`create_at`,`email`,`image`,`last_name`,`name`) VALUES ("2023-05-29","alberto@correol.com","''","Rojas","Alberto");
- INSERT INTO `db_datajpa`.`clients` (`create_at`,`email`,`image`,`last_name`,`name`) VALUES ("2023-05-29","alberto@correol.com","''","Zavala","Daniel");
- INSERT INTO `db_datajpa`.`clients` (`create_at`,`email`,`image`,`last_name`,`name`) VALUES ("2023-05-29","alberto@correol.com","''","Jimenez","Juan");
- INSERT INTO `db_datajpa`.`clients` (`create_at`,`email`,`image`,`last_name`,`name`) VALUES ("2023-05-29","alberto@correol.com","''","Guzman","Ximena");
- INSERT INTO `db_datajpa`.`clients` (`create_at`,`email`,`image`,`last_name`,`name`) VALUES ("2023-05-29","alberto@correol.com","''","Juarez","Lidia");
- INSERT INTO `db_datajpa`.`clients` (`create_at`,`email`,`image`,`last_name`,`name`) VALUES ("2023-05-29","alberto@correol.com","''","Zavala","Sandra");
- INSERT INTO `db_datajpa`.`clients` (`create_at`,`email`,`image`,`last_name`,`name`) VALUES ("2023-05-29","alberto@correol.com","''","Rojas","Cintia");
- INSERT INTO `db_datajpa`.`clients` (`create_at`,`email`,`image`,`last_name`,`name`) VALUES ("2023-05-29","alberto@correol.com","''","Zavala","Yanet");
- INSERT INTO `db_datajpa`.`clients` (`create_at`,`email`,`image`,`last_name`,`name`) VALUES ("2023-05-29","alberto@correol.com","''","Bustos","Roberto");
- INSERT INTO `db_datajpa`.`clients` (`create_at`,`email`,`image`,`last_name`,`name`) VALUES ("2023-05-29","alberto@correol.com","''","Moreno","Pedro");
+ INSERT INTO `db_datajpa`.`clients` (`create_at`,`email`,`image`,`last_name`,`name`) VALUES ("2023-05-29","alberto@correol.com",'',"Rojas","Alberto");
+ INSERT INTO `db_datajpa`.`clients` (`create_at`,`email`,`image`,`last_name`,`name`) VALUES ("2023-05-29","alberto@correol.com",'',"Zavala","Daniel");
+ INSERT INTO `db_datajpa`.`clients` (`create_at`,`email`,`image`,`last_name`,`name`) VALUES ("2023-05-29","alberto@correol.com",'',"Jimenez","Juan");
+ INSERT INTO `db_datajpa`.`clients` (`create_at`,`email`,`image`,`last_name`,`name`) VALUES ("2023-05-29","alberto@correol.com",'',"Guzman","Ximena");
+ INSERT INTO `db_datajpa`.`clients` (`create_at`,`email`,`image`,`last_name`,`name`) VALUES ("2023-05-29","alberto@correol.com",'',"Juarez","Lidia");
+ INSERT INTO `db_datajpa`.`clients` (`create_at`,`email`,`image`,`last_name`,`name`) VALUES ("2023-05-29","alberto@correol.com",'',"Zavala","Sandra");
+ INSERT INTO `db_datajpa`.`clients` (`create_at`,`email`,`image`,`last_name`,`name`) VALUES ("2023-05-29","alberto@correol.com",'',"Rojas","Cintia");
+ INSERT INTO `db_datajpa`.`clients` (`create_at`,`email`,`image`,`last_name`,`name`) VALUES ("2023-05-29","alberto@correol.com",'',"Zavala","Yanet");
+ INSERT INTO `db_datajpa`.`clients` (`create_at`,`email`,`image`,`last_name`,`name`) VALUES ("2023-05-29","alberto@correol.com",'',"Bustos","Roberto");
+ INSERT INTO `db_datajpa`.`clients` (`create_at`,`email`,`image`,`last_name`,`name`) VALUES ("2023-05-29","alberto@correol.com",'',"Moreno","Pedro");
 
 
 
